@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body{
+        display: flex;
+            flex-direction: column;
+            padding: 1rem;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        }
+        
+        </style>
+    <title>Templating</title>
+
+</head>
+<body>
+
+    <h1 id="headingelement"></h1>
+    
+<input type="text" id="expence" ></input>
+
+<input type="number" id="expenceAmount"></input>
+
+
+
+<p><button id="BtnAdd">+</button></p>
+
+
+<div id="expenseTable"></div>
+</body>
+
+    <script>
+    
+    const element = document.querySelector("#BtnAdd");
+    const inputexpence = document.querySelector("#expence");
+    const inputExAmount = document.querySelector("#expenceAmount");
+    const headingele = document.querySelector("#headingelement");
+    const expenseTab = document.querySelector("#expenseTable");
+
+    let totalExpence = 0;
+
+    
+    
+    // all the expences at one place 
+
+    const allExpences = [];
+
+    
+    element.addEventListener("click",function clickHandler(){
+
+        const expenceItem = {};
+
+        expenceItem.desc = inputexpence.value;
+        expenceItem.amount = inputExAmount.value;
+
+        allExpences.push(expenceItem);
+        
+        
+        const expence = parseInt(inputExAmount.value,10);
+
+        totalExpence = totalExpence + expence;
+
+
+        const sometext = `Total Expense is: ${totalExpence}`;
+        console.log(sometext);
+         headingele.textContent = sometext;
+        
+         const description = inputexpence.value;
+         const Amount = inputExAmount.value;
+
+         // show the table here
+
+         const data1 = allExpences[0];
+         const data2 = allExpences[1];
+        
+         const data1Text = `Expense:${data1.desc} :: : ${data1.amount} `
+         const data2Text = `Expense:${data2.desc} :: : ${data2.amount} `
+
+        const tableText = `<div>${data1Text} </div>
+                            <div>${data2Text}</div>
+        `
+
+        expenseTab.innerHTML = tableText;
+    })
+
+
+    
+    
+    </script>
+</html>
