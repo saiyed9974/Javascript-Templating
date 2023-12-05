@@ -57,13 +57,11 @@
         expenceItem.desc = inputexpence.value;
         expenceItem.amount = inputExAmount.value;
 
-        allExpences.push(expenceItem);
-        
+        allExpences.push(expenceItem);       
         
         const expence = parseInt(inputExAmount.value,10);
 
         totalExpence = totalExpence + expence;
-
 
         const sometext = `Total Expense is: ${totalExpence}`;
         console.log(sometext);
@@ -74,17 +72,28 @@
 
          // show the table here
 
-         const data1 = allExpences[0];
-         const data2 = allExpences[1];
+         //const data1 = allExpences[0];
+         //const data2 = allExpences[1];
         
-         const data1Text = `Expense:${data1.desc} :: : ${data1.amount} `
-         const data2Text = `Expense:${data2.desc} :: : ${data2.amount} `
+       //  const data1Text = `Expense:${data1.desc} :: : ${data1.amount} `
+         //const data2Text = `Expense:${data2.desc} :: : ${data2.amount} `
 
-        const tableText = `<div>${data1Text} </div>
-                            <div>${data2Text}</div>
-        `
+        //const tableText = `<div>${data1Text} </div>
+          //                  <div>${data2Text}</div>
+        //`/
 
-        expenseTab.innerHTML = tableText;
+        //expenseTab.innerHTML = tableText;
+
+            const tableHtml = allExpences.map(item=>{
+
+                return `<div>${item.desc}:: ${item.amount}</div>` // returns array of strings
+
+            })
+
+            const joinedallexpanseHtml = tableHtml.join(""); // Array to string if you dont put comma in parentheses it will return comma between strings
+            
+            expenseTab.innerHTML = joinedallexpanseHtml;
+
     })
 
 
