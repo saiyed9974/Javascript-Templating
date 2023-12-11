@@ -21,8 +21,7 @@
       
         <div class="container-fluid ">
             <a class="navbar-brand" href="#">Xpers</a>
-
-           
+            <span class="navbar-brand" id="headingelement"></span>
         </div>
     </nav>
 
@@ -33,7 +32,7 @@
   <div class=" container">
        
             <div class="jumbotron">
-                <h1 id="headingelement"></h1>
+                
                      <div class="input-group mb-3">
                             <span class="input-group-text" id="basic-addon1">Expenses</span>
                             <input type="text" id="expence" class="form-control" placeholder="Enter Expense here" aria-label="Expense Item" aria-describedby="basic-addon1">
@@ -80,8 +79,8 @@
     
     // all the expences at one place 
 
-    const allExpences = [];
-
+    let allExpences = [];
+    
     
     elementBtn.addEventListener("click",function clickHandler(){
 
@@ -118,18 +117,51 @@
 
         //expenseTab.innerHTML = tableText;
 
-            const tableHtml = allExpences.map(item=>createListitem(item))
-
-                
-             //return `<div>:: </div>` // returns array of strings         
-          
-
-            const joinedallexpanseHtml = tableHtml.join(""); // Array to string if you dont put comma in parentheses it will return comma between strings
-            
-            expenseTab.innerHTML = joinedallexpanseHtml; 
+          renderHtml(allExpences)
 
     })
 
+    function deleteItem(dateValue){
+
+            console.log("Delete item clicked",dateValue);
+            let newArr = [];
+           // for(let i=0; i < allExpences.length;i++){
+
+           //     if(allExpences[i].todaydate.valueOf() !== dateValue){
+//
+             //       newArr.push(allExpences[i]);
+              //      console.log(newArr);
+                    
+             //   }
+                
+
+           // }
+
+           newArr = allExpences.filter((expense)=>{
+
+                if(expense.todaydate.valueOf()!==dateValue) {
+
+                    return expense;
+
+                }
+
+                if(expense.todaydate.valueOf()===dateValue) {
+
+                        const deletedexpense = expense.amount;
+                        totalExpence = totalExpence - deletedexpense;
+                        
+                        headingele.textContent = `Total Expense is: ${totalExpence}`;
+                        
+                    }
+
+
+           })
+
+           allExpences = newArr;
+
+            renderHtml(newArr);
+   
+        }
 
         function createListitem({desc,amount,todaydate}){
 
@@ -138,11 +170,12 @@
                         ${desc}
                     <small class="text-muted">${getdateString(todaydate)}</small>
                 </div>
-                    <div>
+
+                   <div>
                         <span class="px-5">
                             ${amount}
                     </span>
-                        <button type="button" class="btn btn-outline-danger btn-sm">
+                        <button type="button" class="btn btn-outline-danger btn-sm" onclick="deleteItem(${todaydate.valueOf()})">
                         <i class="fas fa-trash-alt"></i>
                     </button>
                 </div>
@@ -156,5 +189,15 @@
           return  todaydate.toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'})
         }
     
+        function renderHtml(arrofList){
+
+            const tableHtml = arrofList.map(exp=>createListitem(exp));
+            const joinedallexpanseHtml = tableHtml.join(""); // Array to string if you dont put comma in parentheses it will return comma between strings
+            
+            expenseTab.innerHTML = joinedallexpanseHtml; 
+
+
+        }
+        
     </script>
 </html>
