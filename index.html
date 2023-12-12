@@ -118,13 +118,17 @@
         //expenseTab.innerHTML = tableText;
 
           renderHtml(allExpences)
-
+          
+         document.getElementById("expence").focus();
+          inputexpence.value = "";  
+          inputExAmount.value = "";
     })
 
     function deleteItem(dateValue){
 
             console.log("Delete item clicked",dateValue);
             let newArr = [];
+            
            // for(let i=0; i < allExpences.length;i++){
 
            //     if(allExpences[i].todaydate.valueOf() !== dateValue){
