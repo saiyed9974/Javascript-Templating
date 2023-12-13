@@ -11,7 +11,7 @@
 
 <h1>How to Use</h1>
 <ol>
-  <li>Clone the Repository: Clone this repository to your local machine</li>
+  <li>Clone the Repository: Clone this repository to your local machine or click on this deploy link - https://dailyexpensecalculator.netlify.app/</li>
   <li><b>Open index.html:</b> Open the index.html file in your web browser.</li>
   <li><b>Enter Expenses:</b> Enter the name and amount of each expense in the respective input fields and click the "Add" or "Calculate" button to see the total expenses in the navigation bar.</li>
   <li><b>Delete Entries:</b> Each entry in the expense list has a delete button. Clicking the delete button removes the respective entry and updates the total expense.</li>
